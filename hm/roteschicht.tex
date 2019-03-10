@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage[paper=landscape,pagesize]{typearea}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,shadows}
+
+\usepackage{pgfplots}
+
+\begin{document}
+
+% Define the layers to draw the diagram
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+	
+	
+% Define block styles
+\tikzstyle{us-phase3} = [rectangle, draw, fill=red!20, text width=5em, text centered, minimum height=4em, node distance=3cm]
+\tikzstyle{line} = [draw, -latex']
+
+
+%\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+%text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+%\tikzstyle{line} = [draw, -latex']
+%\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+%minimum height=2em]
+	
+
+\begin{tikzpicture}[node distance = 2cm, auto, overlay]
+
+	% draw phase layer
+	\draw[line width=1 mm] (-1\paperwidth,1) -- (1\paperwidth,1);
+	\draw[line width=1 mm] (-1\paperwidth,-2) -- (1\paperwidth,-2);
+	\path [fill=red] (-0.51\paperwidth,1) rectangle (1\paperwidth,-2);
+
+	% Place nodes
+	\node [us-phase3] (us333) {us 333};	
+	\node [us-phase3, right of=us333] (us334) {us 334};	
+
+	% Draw edges
+	\draw (us333) -- (us334);
+
+%	\node [block] (init) {initialize model};
+%	\node [cloud, left of=init] (expert) {expert};
+%	\node [cloud, right of=init] (system) {system};
+%	\node [block, below of=init] (identify) {identify candidate models};
+%	\node [block, below of=identify] (evaluate) {evaluate candidate models};
+%	\node [block, left of=evaluate, node distance=3cm] (update) {update model};
+%	\node [decision, below of=evaluate] (decide) {is best candidate better?};
+%	\node [block, below of=decide, node distance=3cm] (stop) {stop};
+%	% Draw edges
+%	\path [line] (init) -- (identify);
+%	\path [line] (identify) -- (evaluate);
+%	\path [line] (evaluate) -- (decide);
+%	\path [line] (decide) -| node [near start] {yes} (update);
+%	\path [line] (update) |- (identify);
+%	\path [line] (decide) -- node {no}(stop);
+%	\path [line,dashed] (expert) -- (init);
+%	\path [line,dashed] (system) -- (init);
+%	\path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
+
+
+\end{document}
